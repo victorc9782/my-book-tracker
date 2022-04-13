@@ -12,7 +12,8 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
+import BookInfoScreen from '../screens/BookInfoScreen';
+import NoteInfoScreen from '../screens/NoteInfoScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import BookScreen from '../screens/BookScreen';
 import NoteScreen from '../screens/NoteScreen';
@@ -41,7 +42,8 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="BookInfo" component={BookInfoScreen} />
+        <Stack.Screen name="NoteInfo" component={NoteInfoScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -68,20 +70,20 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'Book'>) => ({
           title: 'Book',
           tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+          // headerRight: () => (
+          //   <Pressable
+          //     onPress={() => navigation.navigate('BookInfo')}
+          //     style={({ pressed }) => ({
+          //       opacity: pressed ? 0.5 : 1,
+          //     })}>
+          //     <FontAwesome
+          //       name="info-circle"
+          //       size={25}
+          //       color={Colors[colorScheme].text}
+          //       style={{ marginRight: 15 }}
+          //     />
+          //   </Pressable>
+          // ),
         })}
       />
       <BottomTab.Screen

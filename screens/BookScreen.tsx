@@ -5,14 +5,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { NativeBaseProvider, Box, FlatList, Icon, IconButton, Pressable } from "native-base";
-import { RootTabScreenProps } from '../types';
+import { RootTabScreenProps, Book } from '../types';
 
 export default function BookScreen({ navigation }: RootTabScreenProps<'Book'>) {
 	const addButtonPress = () => {
 		console.log('addButtonPress');
 	}
 	function Books() {
-		const bookInfo = [
+		const bookInfo: Book[] = [
 			{
 				title: 'My Book'
 			},
@@ -30,7 +30,7 @@ export default function BookScreen({ navigation }: RootTabScreenProps<'Book'>) {
 			item
 		}) => {
 			return (
-				<Pressable onPress={() => console.log("I'm Pressed")} >
+				<Pressable onPress={() => navigation.navigate('BookInfo', { info: item })} >
 					<Box width={Dimensions.get('window').width/3} borderWidth="1" borderColor="coolGray.300" shadow="3" bg="coolGray.100" p="5" rounded="8">
 						<Text style={{color: 'black'}}>{item.title}</Text>
 
